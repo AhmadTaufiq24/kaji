@@ -1,4 +1,4 @@
-# Kaji
+# Kaji - AI Business Model Validator
 
 > Kaji dulu, baru bangun.
 

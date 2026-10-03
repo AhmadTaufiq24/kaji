@@ -2,7 +2,7 @@
   "name": "kaji",
   "private": true,
   "version": "0.1.0",
-  "description": "Kaji — AI Business Model Validator for early-stage founders",
+  "description": "Kaji - AI Business Model Validator",
   "type": "module",
   "packageManager": "pnpm@11.26.0",
   "scripts": {
