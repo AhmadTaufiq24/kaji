@@ -2,7 +2,12 @@
 
 > Kaji dulu, baru bangun.
 
-AI Business Model Validator for early-stage founders. See `docs/PRD.md`.
+Kaji membantu founder tahap awal menguji ide startup sebelum membangunnya. Founder menulis ide dalam 1–3 paragraf. Kaji mengembalikan laporan validasi 9 bagian — masalah, customer, pasar, kompetitor, model bisnis, go-to-market, risiko, asumsi, dan verdict — lengkap dengan sitasi web, skor yang dihitung di kode, dan chat what-if yang menunjukkan perubahan tanpa menimpa laporan asli.
+
+- Demo: https://kaji-cyan.vercel.app
+- API: https://api-production-5fc28.up.railway.app
+
+Spesifikasi MVP ada di `docs/PRD.md`.
 
 ## Stack
 
