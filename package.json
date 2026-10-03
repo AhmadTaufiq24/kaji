@@ -1,0 +1,30 @@
+{
+  "name": "kaji",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Kaji — AI Business Model Validator for early-stage founders",
+  "type": "module",
+  "packageManager": "pnpm@11.26.0",
+  "scripts": {
+    "dev": "pnpm run --parallel --filter api --filter platform dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:worker": "pnpm --filter api worker:dev",
+    "dev:platform": "pnpm --filter platform dev",
+    "smoke:trace": "pnpm --filter @kaji/agent smoke:trace",
+    "db:up": "docker compose up -d",
+    "db:migrate": "pnpm --filter api db:migrate",
+    "db:generate": "pnpm --filter api db:generate",
+    "db:studio": "pnpm --filter api db:studio",
+    "eval": "pnpm --filter api eval"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.9.0",
+      "onFail": "download"
+    }
+  },
+  "dependencies": {
+    "dotenv-cli": "11.0.0"
+  }
+}

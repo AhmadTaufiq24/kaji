@@ -1,0 +1,26 @@
+{
+  "name": "@kaji/agent",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "smoke:trace": "pnpm with-env tsx src/scripts/smoke-trace.ts",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@anvia/core": "0.13.5",
+    "@anvia/langfuse": "0.3.7",
+    "@anvia/openai": "0.3.21",
+    "@langfuse/tracing": "5.11.0",
+    "@tavily/core": "0.7.6",
+    "zod": "4.4.3",
+    "dotenv-cli": "11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.5.2",
+    "tsx": "4.23.1",
+    "typescript": "5.9.2"
+  }
+}

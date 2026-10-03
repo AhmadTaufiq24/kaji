@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ReportStatus {
+  queued
+  running
+  completed
+  partial
+  failed
+}
+
+enum MessageRole {
+  user
+  assistant
+}
+
+model Report {
+  id             String       @id @default(cuid())
+  ownerToken     String
+  ideaText       String
+  ideaName       String?
+  targetCustomer String?
+  monetization   String?
+  region         String       @default("Indonesia")
+  stage          String?
+  normalizedIdea Json?
+  status         ReportStatus @default(queued)
+  overallScore   Int?
+  verdict        String?
+  promptVersion  String       @default("v1")
+  isPublic       Boolean      @default(false)
+  inputTokens    Int?
+  outputTokens   Int?
+  costUsd        Float?
+  langfuseTraceId String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  sections ReportSection[]
+  sources  Source[]
+  messages ChatMessage[]
+
+  @@index([ownerToken])
+}
+
+model ReportSection {
+  id         String  @id @default(cuid())
+  reportId   String
+  report     Report  @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  key        String
+  content    Json
+  score      Int?
+  confidence String?
+  grounded   Boolean @default(false)
+
+  @@unique([reportId, key])
+}
+
+model Source {
+  id         String   @id @default(cuid())
+  reportId   String
+  report     Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  sectionKey String
+  url        String
+  title      String?
+  snippet    String?
+  accessedAt DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String      @id @default(cuid())
+  reportId  String
+  report    Report      @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  role      MessageRole
+  content   String
+  delta     Json?
+  createdAt DateTime    @default(now())
+
+  @@index([reportId])
+}
+
+model EvalRun {
+  id            String   @id @default(cuid())
+  promptVersion String
+  results       Json
+  createdAt     DateTime @default(now())
+}
